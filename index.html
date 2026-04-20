@@ -1,301 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rafael — FX Trader & builder of tools. Mathematics, markets, and machines. New York.">
-    <title>ronu.one — 浪人</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ronu.one</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    body {
+      background: #0c0c0c;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    <!-- Stylesheets (modular) -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/animations.css">
+    .card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 64px 72px 56px;
+      width: min(860px, calc(100vw - 48px));
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: #555;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .headline {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(52px, 7vw, 76px);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 40px;
+    }
+
+    .headline .plain { color: #f0f0f0; }
+    .headline .name  { color: #777; font-style: italic; }
+
+    .sub {
+      font-size: 15px;
+      color: #c0c0c0;
+      margin-bottom: 48px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #2a2a2a;
+      margin-bottom: 36px;
+    }
+
+    .tags {
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-
-    <!-- Ambient scanline sweep -->
-    <div class="scanline-sweep" aria-hidden="true"></div>
-
-    <!-- ===================== HEADER ===================== -->
-    <header>
-        <nav>
-            <div class="logo">
-                ronu.one
-                <span class="logo-kanji">浪人 · New York</span>
-            </div>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
-        </nav>
-    </header>
-
-    <!-- ===================== MAIN ===================== -->
-    <main>
-
-        <!-- HERO -->
-        <section id="hero">
-            <div class="hero-glow" aria-hidden="true"></div>
-            <div class="hero-glow-2" aria-hidden="true"></div>
-
-            <p class="hero-eyebrow">浪人 (rōnin) · FX Trader · New York</p>
-
-            <h1 class="hero-title">
-                <span class="glitch" data-text="Rafael">Rafael</span>
-                <span class="hero-kanji">数学 · 市場 · 機械</span>
-            </h1>
-
-            <p class="hero-sub">
-                <strong>FX Trader</strong> at ANZ Bank. Mathematics background.
-                I build tools that make markets, data, and ideas more legible —
-                from trading blotters to 3D visualizations.
-            </p>
-
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-outline">Get in Touch</a>
-            </div>
-
-            <div class="hero-status" aria-hidden="true">
-                <span>ANZ · New York</span>
-                FX Swaps &amp; Forwards
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section id="about">
-            <p class="section-label reveal">About</p>
-            <h2 class="reveal">The Rōnin</h2>
-
-            <div class="about-grid">
-                <div>
-                    <p class="reveal reveal-delay-1">
-                        Mathematics graduate turned FX trader. I work on the foreign exchange
-                        desk at ANZ Bank in New York, pricing and managing swap deals — where
-                        calculus meets counterparty risk at the speed of a verbal quote.
-                    </p>
-                    <p class="reveal reveal-delay-2">
-                        Outside the desk, I build things: trading automation tools, data
-                        visualizations, interactive simulations. Anything where a mathematical
-                        idea can be made tangible through code.
-                    </p>
-                    <p class="reveal reveal-delay-3">
-                        The 浪人 (rōnin) concept fits: a lone practitioner applying craft
-                        without institutional permission — in markets, in code, in ideas.
-                    </p>
-                </div>
-
-                <div class="about-stats reveal reveal-delay-2">
-                    <div class="stat-card reveal reveal-delay-1">
-                        <div class="stat-value">FX</div>
-                        <div class="stat-label">Swaps · Forwards</div>
-                    </div>
-                    <div class="stat-card reveal reveal-delay-2">
-                        <div class="stat-value">NYC</div>
-                        <div class="stat-label">Base of Operations</div>
-                    </div>
-                    <div class="stat-card reveal reveal-delay-3">
-                        <div class="stat-value">∑∞</div>
-                        <div class="stat-label">Mathematics</div>
-                    </div>
-                    <div class="stat-card reveal reveal-delay-4">
-                        <div class="stat-value">ANZ</div>
-                        <div class="stat-label">Bank · Trader</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section id="skills">
-            <p class="section-label reveal">Capabilities</p>
-            <h2 class="reveal">Skills</h2>
-
-            <div class="skills-grid">
-                <div class="skill-card reveal reveal-delay-1">
-                    <span class="skill-icon">∫</span>
-                    <h3>Mathematics</h3>
-                    <p>Calculus, linear algebra, probability, and quantitative modeling. The foundation everything else is built on.</p>
-                </div>
-                <div class="skill-card reveal reveal-delay-2">
-                    <span class="skill-icon">¥</span>
-                    <h3>FX Trading</h3>
-                    <p>Foreign exchange swaps &amp; forwards, pricing, forward points, risk management, and trading desk automation.</p>
-                </div>
-                <div class="skill-card reveal reveal-delay-3">
-                    <span class="skill-icon">⌘</span>
-                    <h3>Python</h3>
-                    <p>Automation, data processing, Selenium WebDriver for trading platform extraction, pandas, and backend scripting.</p>
-                </div>
-                <div class="skill-card reveal reveal-delay-1">
-                    <span class="skill-icon">◈</span>
-                    <h3>JavaScript / Three.js</h3>
-                    <p>Interactive visualizations, 3D graphics, WebGL, and browser-based tools — from particle systems to physics simulations.</p>
-                </div>
-                <div class="skill-card reveal reveal-delay-2">
-                    <span class="skill-icon">⚡</span>
-                    <h3>Web Development</h3>
-                    <p>HTML, CSS, vanilla JS, and GitHub Pages. Building fast, self-contained tools that run anywhere without dependencies.</p>
-                </div>
-                <div class="skill-card reveal reveal-delay-3">
-                    <span class="skill-icon">⊞</span>
-                    <h3>VBA / Excel</h3>
-                    <p>Add-ins, automation macros, custom tooling for trading workflows — bridging legacy desk infrastructure with modern data.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <p class="section-label reveal">Work</p>
-            <h2 class="reveal">Projects</h2>
-
-            <div class="projects-grid">
-
-                <div class="project-card reveal reveal-delay-1">
-                    <div class="project-header">
-                        <h3>Prime Rays</h3>
-                        <span class="project-badge badge-live">Live</span>
-                    </div>
-                    <p>Interactive polar coordinate visualization of prime number distribution patterns. Mathematics made beautiful — rays, spirals, and the hidden structure of primes.</p>
-                    <div class="project-tags">
-                        <span class="tag">Three.js</span>
-                        <span class="tag">Mathematics</span>
-                        <span class="tag">WebGL</span>
-                        <span class="tag">Visualization</span>
-                    </div>
-                    <div class="project-footer">
-                        <a href="https://ronu.one" class="btn btn-sm btn-outline" target="_blank" rel="noopener">View Live</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal reveal-delay-2">
-                    <div class="project-header">
-                        <h3>FX Swap Blotter</h3>
-                        <span class="project-badge badge-tool">Tool</span>
-                    </div>
-                    <p>Trading desk blotter for pricing verbal FX swap and forward requests. Loads CSV rate data, calculates forward points, and supports real-time quoting workflow at ANZ.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">FX Markets</span>
-                        <span class="tag">Pandas</span>
-                        <span class="tag">Trading</span>
-                    </div>
-                    <div class="project-footer">
-                        <a href="#" class="btn btn-sm btn-ghost">Internal Tool</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal reveal-delay-3">
-                    <div class="project-header">
-                        <h3>Running Biomechanics Simulator</h3>
-                        <span class="project-badge badge-viz">Viz</span>
-                    </div>
-                    <p>3D physics-based running simulator with moment of inertia calculations, body measurement customization, and retro Windows 95 styling. Built as a standalone HTML file.</p>
-                    <div class="project-tags">
-                        <span class="tag">Three.js</span>
-                        <span class="tag">Physics</span>
-                        <span class="tag">HTML/CSS</span>
-                        <span class="tag">Biomechanics</span>
-                    </div>
-                    <div class="project-footer">
-                        <a href="https://ronu.one" class="btn btn-sm btn-outline" target="_blank" rel="noopener">View</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal reveal-delay-1">
-                    <div class="project-header">
-                        <h3>3D Network Visualizer</h3>
-                        <span class="project-badge badge-viz">Viz</span>
-                    </div>
-                    <p>Cyberpunk-aesthetic 3D contact management and network visualization tool. Force-directed graph with Three.js, delivered as a self-contained HTML file.</p>
-                    <div class="project-tags">
-                        <span class="tag">Three.js</span>
-                        <span class="tag">Graph Theory</span>
-                        <span class="tag">Cyberpunk</span>
-                        <span class="tag">Self-Contained</span>
-                    </div>
-                    <div class="project-footer">
-                        <a href="#" class="btn btn-sm btn-outline">Demo</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal reveal-delay-2">
-                    <div class="project-header">
-                        <h3>NJ Transit Dashboard</h3>
-                        <span class="project-badge badge-tool">Tool</span>
-                    </div>
-                    <p>Commute dashboard for Westfield NJ ↔ Newark ↔ NY Penn routes. Real-time schedule lookup with clean, minimal UI. Built for daily use.</p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">NJ Transit</span>
-                        <span class="tag">Dashboard</span>
-                    </div>
-                    <div class="project-footer">
-                        <a href="#" class="btn btn-sm btn-outline">View</a>
-                    </div>
-                </div>
-
-                <div class="project-card reveal reveal-delay-3">
-                    <div class="project-header">
-                        <h3>Reno Excel Add-in</h3>
-                        <span class="project-badge badge-tool">Tool</span>
-                    </div>
-                    <p>VBA Excel add-in for loading live currency rate data from ANZ's corporate network. Global persistent menu across all Excel sessions with one-click data refresh.</p>
-                    <div class="project-tags">
-                        <span class="tag">VBA</span>
-                        <span class="tag">Excel</span>
-                        <span class="tag">FX Data</span>
-                        <span class="tag">Automation</span>
-                    </div>
-                    <div class="project-footer">
-                        <a href="#" class="btn btn-sm btn-ghost">Internal Tool</a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="contact-inner">
-                <p class="section-label reveal" style="justify-content:center;">Contact</p>
-                <h2 class="reveal" style="text-align:center;">Get in Touch</h2>
-                <p class="reveal reveal-delay-1">
-                    Whether it's about markets, mathematics, a collaboration, or just an interesting idea —
-                    find me on GitHub or reach out directly.
-                </p>
-                <div class="contact-links reveal reveal-delay-2">
-                    <a href="https://github.com/the-reno" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                        GitHub
-                    </a>
-                    <a href="https://ronu.one" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-                        ronu.one
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ===================== FOOTER ===================== -->
-    <footer>
-        <span>&copy; 2026 Rafael — ronu.one</span>
-        <span class="footer-kanji">浪人</span>
-        <span>New York, NY</span>
-    </footer>
-
-    <!-- Scripts (modular) -->
-    <script src="js/nav.js"></script>
-    <script src="js/effects.js"></script>
+  <div class="card">
+    <p class="eyebrow">// hello, world</p>
+    <h1 class="headline">
+      <span class="plain">I'm </span><span class="name">Ronu.</span>
+    </h1>
+    <p class="sub">Welcome to my lab.</p>
+    <hr>
+    <p class="tags">triathlon &nbsp;·&nbsp; science &nbsp;·&nbsp; markets</p>
+  </div>
 </body>
 </html>
