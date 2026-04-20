@@ -1,0 +1,290 @@
+/* ============================================================
+   COMPONENTS — Buttons, Cards, Badges, Tags
+   ============================================================ */
+
+/* --- Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.7rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all var(--ease-mid);
+    text-decoration: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.06);
+    opacity: 0;
+    transition: opacity var(--ease-fast);
+}
+
+.btn:hover::before {
+    opacity: 1;
+}
+
+/* Primary — gold fill */
+.btn-primary {
+    background: var(--gold);
+    color: #080a0e;
+}
+
+.btn-primary:hover {
+    background: var(--gold-bright);
+    color: #080a0e;
+    box-shadow: 0 0 20px var(--gold-glow);
+    transform: translateY(-1px);
+}
+
+/* Outline — gold border */
+.btn-outline {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+}
+
+.btn-outline:hover {
+    background: var(--gold-glow);
+    color: var(--gold-bright);
+    border-color: var(--gold-bright);
+    transform: translateY(-1px);
+}
+
+/* Ghost — subtle */
+.btn-ghost {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.btn-sm {
+    padding: 0.45rem 1rem;
+    font-size: 0.72rem;
+}
+
+/* --- Stat Card --- */
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0.6;
+}
+
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+/* --- Skill Card --- */
+.skill-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: var(--space-lg);
+    transition: border-color var(--ease-mid), background var(--ease-mid), transform var(--ease-mid);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity var(--ease-mid);
+}
+
+.skill-card:hover {
+    border-color: var(--gold);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+}
+
+.skill-card:hover::after {
+    opacity: 0.5;
+}
+
+.skill-icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    display: block;
+}
+
+.skill-card h3 {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+}
+
+.skill-card p {
+    color: var(--text-dim);
+    font-size: 0.875rem;
+    line-height: 1.65;
+}
+
+/* --- Project Card --- */
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: border-color var(--ease-mid), background var(--ease-mid), transform var(--ease-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--gold);
+    transition: height var(--ease-slow);
+}
+
+.project-card:hover {
+    border-color: var(--border-glow);
+    background: var(--bg-card-hover);
+    transform: translateY(-3px);
+}
+
+.project-card:hover::before {
+    height: 100%;
+}
+
+.project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
+.project-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    line-height: 1.25;
+}
+
+.project-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.badge-live {
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+}
+
+.badge-tool {
+    background: rgba(245, 166, 35, 0.1);
+    color: var(--gold);
+    border: 1px solid rgba(245, 166, 35, 0.25);
+}
+
+.badge-viz {
+    background: rgba(150, 100, 255, 0.1);
+    color: #a78bfa;
+    border: 1px solid rgba(150, 100, 255, 0.25);
+}
+
+.project-card p {
+    color: var(--text-dim);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    flex: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 2px;
+    transition: color var(--ease-fast), border-color var(--ease-fast);
+}
+
+.project-card:hover .tag {
+    color: var(--text-dim);
+    border-color: var(--border-glow);
+}
+
+.project-footer {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border);
+}
