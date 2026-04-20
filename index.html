@@ -17,31 +17,35 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
       overflow: hidden;
     }
 
-    /* ── Carousel wrapper ── */
-    .carousel-outer {
-      width: 100%;
-      max-width: 480px;
+    /* ── Stage ── */
+    .stage {
       position: relative;
-    }
-
-    .carousel-track {
+      width: 100vw;
+      height: 420px;
+      perspective: 1100px;
       display: flex;
-      gap: 1rem;
-      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      align-items: center;
+      justify-content: center;
     }
 
-    /* ── Card ── */
+    /* ── Cards ── */
     .card {
-      min-width: 100%;
+      position: absolute;
+      width: 340px;
       border: 1px solid #1f1f1f;
       border-radius: 8px;
-      padding: 3rem 2.5rem;
+      padding: 2.5rem 2.25rem;
       background: #111;
-      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1),
+                  opacity  0.55s ease,
+                  filter   0.55s ease;
+      transform-style: preserve-3d;
+      transform-origin: center center;
+      user-select: none;
     }
 
     .greeting {
@@ -49,162 +53,133 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #444;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
 
     h1 {
       font-family: 'Instrument Serif', serif;
-      font-size: 3rem;
+      font-size: 2.6rem;
       font-weight: 400;
       color: #efefef;
       line-height: 1;
       letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
     h1 em { font-style: italic; color: #555; }
 
     .card-body {
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.9;
-      color: #888;
-      margin-bottom: 2rem;
-      min-height: 80px;
+      color: #666;
+      margin-bottom: 1.75rem;
+      min-height: 72px;
     }
 
-    .divider { height: 1px; background: #1f1f1f; margin: 2rem 0; }
+    .divider { height: 1px; background: #1f1f1f; margin-bottom: 1.25rem; }
 
-    .tag {
-      font-size: 11px;
-      color: #555;
-      letter-spacing: 0.05em;
-    }
+    .tag { font-size: 11px; color: #444; letter-spacing: 0.05em; }
 
-    /* ── Nav ── */
-    .carousel-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1.25rem;
-      padding: 0 0.1rem;
-    }
-
-    .nav-btn {
+    /* ── Arrows ── */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       background: none;
-      border: 1px solid #1f1f1f;
-      color: #444;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.45rem 0.9rem;
-      border-radius: 3px;
+      border: none;
+      color: #333;
+      font-size: 2rem;
       cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-      user-select: none;
+      z-index: 100;
+      padding: 1rem;
+      transition: color 0.2s;
+      font-family: 'DM Mono', monospace;
+      line-height: 1;
     }
-    .nav-btn:hover { border-color: #444; color: #efefef; }
-    .nav-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+    .arrow:hover { color: #888; }
+    .arrow.left  { left: 1rem; }
+    .arrow.right { right: 1rem; }
 
-    /* Dots */
+    /* ── Dots ── */
     .dots {
       display: flex;
       gap: 6px;
-      align-items: center;
+      margin-top: 2rem;
     }
     .dot {
-      width: 5px;
-      height: 5px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: #1f1f1f;
       transition: background 0.2s, transform 0.2s;
       cursor: pointer;
     }
-    .dot.active {
-      background: #555;
-      transform: scale(1.3);
-    }
+    .dot.active { background: #555; transform: scale(1.35); }
   </style>
 </head>
 <body>
 
-  <div class="carousel-outer">
-    <div class="carousel-track" id="track">
+  <div class="stage" id="stage">
 
-      <!-- 0 · Intro -->
-      <div class="card">
-        <p class="greeting">// hello, world</p>
-        <h1>I'm <em>Ronu.</em></h1>
-        <p class="card-body">Welcome to my lab.</p>
-        <div class="divider"></div>
-        <p class="tag">triathlon · science · markets</p>
-      </div>
-
-      <!-- 1 · Triathlon -->
-      <div class="card">
-        <p class="greeting">// 01 · endurance</p>
-        <h1><em>Triathlon.</em></h1>
-        <p class="card-body">
-          Swim, bike, run — and the biomechanics hiding in between.
-          I build simulators and study movement as seriously as markets.
-        </p>
-        <div class="divider"></div>
-        <p class="tag">swim · bike · run</p>
-      </div>
-
-      <!-- 2 · Science -->
-      <div class="card">
-        <p class="greeting">// 02 · inquiry</p>
-        <h1><em>Science.</em></h1>
-        <p class="card-body">
-          Mathematics at the core. From N-body orbital mechanics
-          to prime number patterns — curiosity made computational.
-        </p>
-        <div class="divider"></div>
-        <p class="tag">math · physics · visualization</p>
-      </div>
-
-      <!-- 3 · Markets -->
-      <div class="card">
-        <p class="greeting">// 03 · finance</p>
-        <h1><em>Markets.</em></h1>
-        <p class="card-body">
-          FX trader at ANZ Bank, New York. Swaps, forwards,
-          and the tools I build to make the desk run faster.
-        </p>
-        <div class="divider"></div>
-        <p class="tag">fx · swaps · new york</p>
-      </div>
-
-      <!-- 4 · Maker -->
-      <div class="card">
-        <p class="greeting">// 04 · craft</p>
-        <h1><em>Maker.</em></h1>
-        <p class="card-body">
-          Blotters, scrapers, visualizers, dashboards — built to
-          solve real problems on a trading desk and beyond.
-        </p>
-        <div class="divider"></div>
-        <p class="tag">python · js · three.js · vba</p>
-      </div>
-
+    <div class="card" data-index="0">
+      <p class="greeting">// hello, world</p>
+      <h1>I'm <em>Ronu.</em></h1>
+      <p class="card-body">Welcome to my lab.</p>
+      <div class="divider"></div>
+      <p class="tag">triathlon · science · markets</p>
     </div>
 
-    <!-- Navigation -->
-    <div class="carousel-nav">
-      <button class="nav-btn" id="prev">← prev</button>
-      <div class="dots" id="dots"></div>
-      <button class="nav-btn" id="next">next →</button>
+    <div class="card" data-index="1">
+      <p class="greeting">// 01 · endurance</p>
+      <h1><em>Triathlon.</em></h1>
+      <p class="card-body">Swim, bike, run — and the biomechanics hiding in between. I study movement as seriously as markets.</p>
+      <div class="divider"></div>
+      <p class="tag">swim · bike · run</p>
     </div>
+
+    <div class="card" data-index="2">
+      <p class="greeting">// 02 · inquiry</p>
+      <h1><em>Science.</em></h1>
+      <p class="card-body">Mathematics at the core. From N-body orbital mechanics to prime patterns — curiosity made computational.</p>
+      <div class="divider"></div>
+      <p class="tag">math · physics · visualization</p>
+    </div>
+
+    <div class="card" data-index="3">
+      <p class="greeting">// 03 · finance</p>
+      <h1><em>Markets.</em></h1>
+      <p class="card-body">FX trader at ANZ Bank, New York. Swaps, forwards, and the tools I build to make the desk run faster.</p>
+      <div class="divider"></div>
+      <p class="tag">fx · swaps · new york</p>
+    </div>
+
+    <div class="card" data-index="4">
+      <p class="greeting">// 04 · craft</p>
+      <h1><em>Maker.</em></h1>
+      <p class="card-body">Blotters, scrapers, visualizers, dashboards — built to solve real problems on a trading desk and beyond.</p>
+      <div class="divider"></div>
+      <p class="tag">python · js · three.js · vba</p>
+    </div>
+
   </div>
 
+  <button class="arrow left"  id="prev">&#8249;</button>
+  <button class="arrow right" id="next">&#8250;</button>
+
+  <div class="dots" id="dots"></div>
+
   <script>
-    const track  = document.getElementById('track');
-    const cards  = track.querySelectorAll('.card');
-    const prev   = document.getElementById('prev');
-    const next   = document.getElementById('next');
+    const cards = Array.from(document.querySelectorAll('.card'));
     const dotsEl = document.getElementById('dots');
-    const total  = cards.length;
-    let current  = 0;
+    const total = cards.length;
+    let current = 0;
+
+    // Offsets per position relative to center
+    const positions = [
+      { x: -540, rotY:  42, scale: 0.72, opacity: 0.35, z: -200 },
+      { x: -240, rotY:  28, scale: 0.85, opacity: 0.60, z: -100 },
+      { x:    0, rotY:   0, scale: 1.00, opacity: 1.00, z:    0 },
+      { x:  240, rotY: -28, scale: 0.85, opacity: 0.60, z: -100 },
+      { x:  540, rotY: -42, scale: 0.72, opacity: 0.35, z: -200 },
+    ];
 
     // Build dots
     const dots = Array.from({ length: total }, (_, i) => {
@@ -216,28 +191,48 @@
     });
 
     function goTo(n) {
-      current = Math.max(0, Math.min(n, total - 1));
-      // Each card is 100% + 1rem gap
-      const cardW = cards[0].offsetWidth + 16;
-      track.style.transform = `translateX(-${current * cardW}px)`;
+      current = ((n % total) + total) % total;
+
+      cards.forEach((card, i) => {
+        // Slot: position relative to current (-2 to +2, wrapping)
+        let slot = i - current;
+        if (slot < -2) slot += total;
+        if (slot >  2) slot -= total;
+
+        const visible = slot >= -2 && slot <= 2;
+        const pos = positions[slot + 2];
+
+        card.style.transform  = `translateX(${pos.x}px) translateZ(${pos.z}px) rotateY(${pos.rotY}deg) scale(${pos.scale})`;
+        card.style.opacity    = visible ? pos.opacity : 0;
+        card.style.filter     = slot === 0 ? 'none' : 'brightness(0.6)';
+        card.style.zIndex     = 10 - Math.abs(slot);
+        card.style.pointerEvents = slot === 0 ? 'auto' : 'none';
+      });
+
       dots.forEach((d, i) => d.classList.toggle('active', i === current));
-      prev.disabled = current === 0;
-      next.disabled = current === total - 1;
     }
 
-    prev.addEventListener('click', () => goTo(current - 1));
-    next.addEventListener('click', () => goTo(current + 1));
+    document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('next').addEventListener('click', () => goTo(current + 1));
 
-    // Touch / swipe
+    // Click side cards to navigate
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => { if (i !== current) goTo(i); });
+    });
+
+    // Swipe
     let startX = 0;
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend',   e => {
+    document.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend',   e => {
       const dx = e.changedTouches[0].clientX - startX;
       if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
     });
 
-    // Recalc on resize
-    window.addEventListener('resize', () => goTo(current));
+    // Arrow keys
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
 
     goTo(0);
   </script>
