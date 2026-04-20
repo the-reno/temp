@@ -1,119 +1,90 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ronu.one</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ronu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      background-color: #080a0e;
       min-height: 100vh;
+      background: #0a0a0a;
+      color: #a8a8a8;
+      font-family: 'DM Mono', monospace;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-
-      /* Grid texture */
-      background-image:
-        linear-gradient(#1e2535 1px, transparent 1px),
-        linear-gradient(90deg, #1e2535 1px, transparent 1px);
-      background-size: 48px 48px;
+      padding: 2rem;
     }
-
-    /* Scanline overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.07) 2px,
-        rgba(0,0,0,0.07) 4px
-      );
-      pointer-events: none;
-    }
-
     .card {
-      background: #111520;
-      border: 1px solid #1e2535;
-      border-radius: 14px;
-      padding: 64px 72px 56px;
-      width: min(920px, calc(100vw - 48px));
-      position: relative;
-      z-index: 1;
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid #1f1f1f;
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      background: #111;
+      animation: fadeIn 0.8s ease forwards;
     }
-
-    .eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      color: #3a4455;
+    .greeting {
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      color: #444;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      color: #efefef;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: #555; }
+    p {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #888;
       margin-bottom: 2rem;
     }
-
-    .headline {
-      font-family: 'Noto Serif JP', 'Yu Mincho', Georgia, serif;
-      font-size: clamp(3rem, 6.5vw, 5.2rem);
-      font-weight: 700;
-      line-height: 1.05;
-      margin-bottom: 2rem;
+    .links { display: flex; gap: 0.75rem; }
+    a {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.55rem 1.2rem;
+      border-radius: 3px;
+      transition: all 0.2s;
     }
-
-    /* "I'm" — Noto Serif JP bold, bright white */
-    .headline .plain {
-      color: #f0f4ff;
-      font-style: normal;
-    }
-
-    /* "Ronu." — italic: Noto has no italic so falls through to Georgia italic */
-    .headline .name {
-      color: #6b7a96;
-      font-style: italic;
-    }
-
-    .sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      color: #6b7a96;
-      margin-bottom: 3rem;
-      letter-spacing: 0.02em;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #1e2535;
-      margin-bottom: 2rem;
-    }
-
-    .tags {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: #3a4455;
-      letter-spacing: 0.06em;
-    }
-
-    @media (max-width: 600px) {
-      .card { padding: 40px 32px 36px; }
+    .a-primary { background: #efefef; color: #0a0a0a; border: 1px solid #efefef; }
+    .a-primary:hover { background: transparent; color: #efefef; }
+    .a-ghost { color: #555; border: 1px solid #1f1f1f; }
+    .a-ghost:hover { border-color: #444; color: #efefef; }
+    .divider { height: 1px; background: #1f1f1f; margin: 2rem 0; }
+    .stack { font-size: 11px; color: #444; letter-spacing: 0.05em; }
+    .stack span { color: #555; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <p class="eyebrow">// hello, world</p>
-    <h1 class="headline">
-      <span class="plain">I'm </span><span class="name">Ronu.</span>
-    </h1>
-    <p class="sub">Welcome to my lab.</p>
-    <hr>
-    <p class="tags">triathlon &nbsp;·&nbsp; science &nbsp;·&nbsp; markets</p>
+    <p class="greeting">// hello, world</p>
+    <h1>I'm <em>Ronu.</em></h1>
+    <p>
+      Welcome to my lab.
+    </p>
+    <div class="divider"></div>
+    <p class="stack"><span>triathlon · science · markets</span></p>
   </div>
 </body>
 </html>
